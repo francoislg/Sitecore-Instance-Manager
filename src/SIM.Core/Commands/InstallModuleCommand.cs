@@ -55,7 +55,7 @@ namespace SIM.Core.Commands
       if (distributive == null)
       {
         result.Success = false;
-        result.Message = "product not found";
+        result.Message = "product " + product + " not found";
         result.Data = null;
 
         return;
@@ -65,7 +65,7 @@ namespace SIM.Core.Commands
       
       var installArgs = new InstallModulesArgs(instance, new[] { distributive }, builder);
       var controller = new AggregatePipelineController();
-      PipelineManager.StartPipeline("install", installArgs, controller, false);
+      PipelineManager.StartPipeline("installmodules", installArgs, controller, false);
 
       result.Success = !string.IsNullOrEmpty(controller.Message);
       result.Message = controller.Message;
